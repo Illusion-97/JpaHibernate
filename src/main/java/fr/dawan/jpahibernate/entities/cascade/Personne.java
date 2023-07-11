@@ -11,8 +11,8 @@ public class Personne {
     private String nom;
     private String prenom;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Personne persist;
+    @OneToOne(cascade = CascadeType.PERSIST) // Crée l'enregistrement pour 'persist' quand la personne est créée
+    private Chien chien;
 
     public long getId() {
         return id;
@@ -38,11 +38,11 @@ public class Personne {
         this.prenom = prenom;
     }
 
-    public Personne getPersist() {
-        return persist;
+    public Chien getChien() {
+        return chien;
     }
 
-    public void setPersist(Personne persist) {
-        this.persist = persist;
+    public void setChien(Chien chien) {
+        this.chien = chien;
     }
 }
