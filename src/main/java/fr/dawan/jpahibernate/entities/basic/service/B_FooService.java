@@ -29,6 +29,7 @@ public class B_FooService extends GenericService<B_Foo, Long, B_FooRepository> {
 */
         return repository.findById(fooId).map(bFoo -> {
             bFoo.setOneToOne(oto);
+            //return bFoo;
             return repository.save(bFoo);
         }).orElse(null);
     }
