@@ -29,7 +29,10 @@ public abstract class GenericService<Entity, ID, Repository extends JpaRepositor
     }
 
     public void deleteById(ID id) {
-        repository.deleteById(id);
+        repository.deleteById(id); // deleteById vous assure la réussite de la suppression
+        // en récupérant d'abord l'information en BDD avant de la passer à la méthode suivante.
+
         // repository.delete(entity); pour supprimer un objet déjà récupéré
+        // Ceci peut permettre une vérification supplémentaire de la version
     }
 }

@@ -4,6 +4,7 @@ import fr.dawan.jpahibernate.dao.Animal;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -30,4 +31,8 @@ WHERE (:name IS NULL OR a.name LIKE %:name%)
 AND (:date IS NULL OR a.birthday = :date)
 """)
     Page<Animal> search(String name, LocalDate date, Pageable pageable);
+
+    @Modifying // Requis pour les requêtes faisant une modification des lignes (UPDATE ou DELETE)
+    @Query("UPDATE Animal a SET a.name = upper(a.name)")
+    int updateNamesToUpperCase();
 }
